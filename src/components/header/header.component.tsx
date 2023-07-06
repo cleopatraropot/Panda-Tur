@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './header.component.scss';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function HeaderComponent() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleNav = () => {
+        setIsOpen(!isOpen);
+    };
     return (
         <div className="header">
             <div className="header-content">
@@ -29,7 +34,14 @@ function HeaderComponent() {
                         </div>
                     </div>
                     <div className="header-right-content-menu">
-                        <MenuIcon className='menu-icon'/>
+                        <MenuIcon className='menu-icon' onClick={toggleNav}/>
+                        <div id="mySidebar" className={`sidebar ${isOpen ? 'open' : ''}`}>
+                            <a href="#">About</a>
+                            <a href="#">Services</a>
+                            <a href="#">Clients</a>
+                            <a href="#">Contact</a>
+                        </div>
+                        <div id="main" className={`${isOpen ? 'open' : ''}`}/>
                     </div>
                 </div>
             </div>
